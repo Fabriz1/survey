@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Volley - Missione Organizzazione!</title>
     <style>
-        /* ... IL TUO CSS RIMANE IDENTICO ... */
+        /* ... IL CSS È IDENTICO E CORRETTO ... */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
         :root { --primary-blue: #0072ff; --secondary-yellow: #ffdd57; --dark-text: #0d3b66; --light-bg: rgba(255, 255, 255, 0.15); --border-color: rgba(255, 255, 255, 0.4); }
         body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #00c6ff, var(--primary-blue)); color: #fff; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
@@ -48,27 +48,24 @@
 </head>
 <body>
 
-    <!-- TRUCCO PER NETLIFY: FORMA HTML NASCOSTA -->
-    <!-- Questa forma non è visibile all'utente, ma serve a Netlify per rilevare il form durante il deploy -->
+    <!-- Form HTML nascosto per Netlify -->
     <form name="sondaggio-volley" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="player_name" />
       <textarea name="availabilities"></textarea>
       <textarea name="description"></textarea>
       <input type="file" name="video_message" />
     </form>
-    <!-- FINE TRUCCO -->
 
     <div class="permission-modal-overlay" id="permission-modal">
-        <!-- ... contenuto del modal ... -->
         <div class="permission-modal-content">
             <h2>Attenzione!</h2>
-            <p>Per rendere questo sondaggio super divertente, useremo la tua fotocamera per registrare un video-messaggio durante la sfida finale. <br><br> Per favore, quando ti verrà richiesto dal browser, clicca su "Consenti".</p>
+            <p>Per rendere questo sondaggio super divertente, useremo la tua fotocamera. Per favore, quando ti verrà richiesto dal browser, clicca su "Consenti".</p>
             <button class="button" id="accept-camera-btn">Ho Capito, Iniziamo!</button>
         </div>
     </div>
 
     <div class="container" id="main-container">
-        <!-- ... tutto il container con gli step del form rimane identico ... -->
+        <!-- ... La struttura del form visibile rimane identica ... -->
         <div class="progress-bar">
             <div class="progress-bar-line"></div>
             <div class="step-indicator active" data-step="1">1</div>
@@ -78,48 +75,32 @@
             <div class="step-indicator" data-step="5">5</div>
         </div>
         
-        <form id="sondaggio-form-visibile" method="POST" enctype="multipart/form-data">
-            <!-- NOTA: Il form visibile non ha più l'attributo data-netlify -->
+        <form id="sondaggio-form-visibile" method="POST">
             <input type="hidden" name="form-name" value="sondaggio-volley" />
             
             <div class="step active" id="step-1">
-                 <h2>Passo 1: Chi sei?</h2>
-                <p>Iniziamo con il tuo nome, campione!</p>
-                <input type="text" id="player-name" name="player_name" required>
-                <div class="step-navigation">
-                    <span></span>
-                    <button type="button" class="button next-btn">Avanti</button>
-                </div>
+                <h2>Passo 1: Chi sei?</h2>
+                <input type="text" id="player-name" name="player_name" required placeholder="Il tuo nome">
+                <div class="step-navigation"><span></span><button type="button" class="button next-btn">Avanti</button></div>
             </div>
             <div class="step" id="step-2">
                 <h2>Passo 2: Quando ci sei?</h2>
-                <p>Seleziona un giorno, poi aggiungi uno o più orari.</p>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     <input type="date" id="date-input" style="flex: 2; margin-bottom: 0;">
                     <input type="time" id="time-input" style="flex: 1; margin-bottom: 0;">
                     <button type="button" class="button" id="add-time-btn" style="padding: 12px 15px;">+</button>
                 </div>
                 <ul id="availability-summary"></ul>
-                <div class="step-navigation">
-                    <button type="button" class="button secondary prev-btn">Indietro</button>
-                    <button type="button" class="button next-btn">Avanti</button>
-                </div>
+                <div class="step-navigation"><button type="button" class="button secondary prev-btn">Indietro</button><button type="button" class="button next-btn">Avanti</button></div>
             </div>
             <div class="step" id="step-3">
                 <h2>Passo 3: Riepilogo</h2>
-                <p>Controlla se è tutto corretto prima della sfida finale.</p>
                 <div id="review-content"></div>
-                <div class="step-navigation">
-                    <button type="button" class="button secondary prev-btn">Indietro</button>
-                    <button type="button" class="button next-btn" id="start-challenge-btn">Inizia la Sfida!</button>
-                </div>
+                <div class="step-navigation"><button type="button" class="button secondary prev-btn">Indietro</button><button type="button" class="button next-btn" id="start-challenge-btn">Inizia la Sfida!</button></div>
             </div>
             <div class="step" id="step-4">
                 <h2>Passo 4: La Sfida!</h2>
-                <p>Fai 5 palleggi! Attiveremo la webcam per registrare la tua gloriosa performance.</p>
-                <div class="privacy-notice">
-                    <strong>Attenzione:</strong> La tua webcam si attiverà per registrare un breve video-messaggio che verrà inviato con il sondaggio.
-                </div>
+                <p>Fai 5 palleggi! Attiveremo la webcam per registrare.</p>
                 <div class="game-area">
                     <div id="game-container">
                         <div id="score">0</div> <div id="ball"></div> <div id="paddle"></div>
@@ -134,24 +115,29 @@
                 <textarea name="description" placeholder="Aggiungi una descrizione o un urlo di battaglia..."></textarea>
                 <input type="hidden" name="availabilities">
                 <input type="file" name="video_message" style="display:none;">
-                <div class="step-navigation">
-                     <button type="button" class="button secondary prev-btn">Indietro</button>
-                    <button type="submit" class="button">Invia Sondaggio e Video!</button>
-                </div>
+                <div class="step-navigation"><button type="button" class="button secondary prev-btn">Indietro</button><button type="submit" class="button">Invia Sondaggio e Video!</button></div>
             </div>
         </form>
     </div>
 
     <script>
-        // --- SCRIPT MODIFICATO PER FUNZIONARE CON IL TRUCCO DI NETLIFY ---
+        // --- SCRIPT DI INVIO ROBUSTO ---
         const form = document.getElementById('sondaggio-form-visibile');
+        
+        // Funzione per codificare i dati per Netlify
+        const encode = (data) => {
+            const formData = new FormData();
+            for (const key of Object.keys(data)) {
+                formData.append(key, data[key]);
+            }
+            return formData;
+        }
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const formData = new FormData(form);
             let availText = "";
-            
             availabilitySummary.querySelectorAll('li').forEach(li => {
                 const date = li.querySelector('strong').textContent;
                 const times = Array.from(li.querySelectorAll('.time-tag')).map(t => t.innerText.replace('×', '').trim()).join(', ');
@@ -166,8 +152,7 @@
 
             fetch('/', {
                 method: 'POST',
-                headers: { "Content-Type": "application/x-www-form-urlencoded" }, // Header per l'invio AJAX a Netlify
-                body: new URLSearchParams(formData).toString()
+                body: formData
             })
             .then(() => {
                 alert('Grazie! Sondaggio inviato con successo!');
@@ -176,7 +161,7 @@
             .catch((error) => alert('Oops! C\'è stato un errore: ' + error));
         });
 
-        // --- TUTTO IL RESTO DELLO SCRIPT RIMANE IDENTICO ---
+        // --- IL RESTO DELLO SCRIPT È IDENTICO ---
         const permissionModal = document.getElementById('permission-modal');
         const acceptCameraBtn = document.getElementById('accept-camera-btn');
         const mainContainer = document.getElementById('main-container');
@@ -215,6 +200,5 @@
         function winGame() { stopGame(); gameMessage.textContent = 'VITTORIA!'; setTimeout(() => { currentStep++; updateFormSteps(); }, 1500); }
         function loseGame() { stopGame(); gameMessage.textContent = 'Game Over! Riprova.'; setTimeout(() => { startGame(); }, 1500); }
     </script>
-
 </body>
 </html>
