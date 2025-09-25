@@ -5,82 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Volley - Missione Organizzazione!</title>
     <style>
+        /* ... IL TUO CSS RIMANE IDENTICO ... */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-        :root {
-            --primary-blue: #0072ff;
-            --secondary-yellow: #ffdd57;
-            --dark-text: #0d3b66;
-            --light-bg: rgba(255, 255, 255, 0.15);
-            --border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #00c6ff, var(--primary-blue));
-            color: #fff;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .permission-modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000;
-        }
-        .permission-modal-content {
-            background: linear-gradient(135deg, #0d3b66, #002347); padding: 30px 40px; border-radius: 20px; text-align: center; max-width: 400px; border: 2px solid var(--border-color);
-        }
+        :root { --primary-blue: #0072ff; --secondary-yellow: #ffdd57; --dark-text: #0d3b66; --light-bg: rgba(255, 255, 255, 0.15); --border-color: rgba(255, 255, 255, 0.4); }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #00c6ff, var(--primary-blue)); color: #fff; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .permission-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .permission-modal-content { background: linear-gradient(135deg, #0d3b66, #002347); padding: 30px 40px; border-radius: 20px; text-align: center; max-width: 400px; border: 2px solid var(--border-color); }
         .permission-modal-content h2 { color: var(--secondary-yellow); }
-
-        .container {
-            max-width: 700px; width: 100%; background: var(--light-bg); padding: 30px 40px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); display: none;
-        }
-
-        .progress-bar {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; position: relative;
-        }
-        .progress-bar::before {
-            content: ''; position: absolute; top: 50%; left: 0; transform: translateY(-50%); height: 4px; width: 100%; background-color: var(--border-color); z-index: -1;
-        }
-        .progress-bar-line {
-            position: absolute; top: 50%; left: 0; transform: translateY(-50%); height: 4px; background-color: var(--secondary-yellow); z-index: -1; width: 0%; transition: width 0.4s ease;
-        }
-        .step-indicator {
-            width: 35px; height: 35px; border-radius: 50%; background-color: var(--border-color); border: 3px solid var(--border-color); color: var(--dark-text); display: flex; justify-content: center; align-items: center; font-weight: bold; transition: all 0.4s ease; z-index: 1;
-        }
-        .step-indicator.active {
-            background-color: var(--secondary-yellow); border-color: var(--secondary-yellow); color: var(--dark-text); transform: scale(1.1);
-        }
-
+        .container { max-width: 700px; width: 100%; background: var(--light-bg); padding: 30px 40px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); display: none; }
+        .progress-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; position: relative; }
+        .progress-bar::before { content: ''; position: absolute; top: 50%; left: 0; transform: translateY(-50%); height: 4px; width: 100%; background-color: var(--border-color); z-index: -1; }
+        .progress-bar-line { position: absolute; top: 50%; left: 0; transform: translateY(-50%); height: 4px; background-color: var(--secondary-yellow); z-index: -1; width: 0%; transition: width 0.4s ease; }
+        .step-indicator { width: 35px; height: 35px; border-radius: 50%; background-color: var(--border-color); border: 3px solid var(--border-color); color: var(--dark-text); display: flex; justify-content: center; align-items: center; font-weight: bold; transition: all 0.4s ease; z-index: 1; }
+        .step-indicator.active { background-color: var(--secondary-yellow); border-color: var(--secondary-yellow); color: var(--dark-text); transform: scale(1.1); }
         .step { display: none; animation: fadeIn 0.5s ease-in-out; }
         .step.active { display: block; }
         h2 { color: var(--secondary-yellow); text-align: center; }
         p { text-align: center; }
-
-        input[type="text"], input[type="date"], input[type="time"] {
-            width: calc(100% - 24px); padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 2px solid var(--border-color); background: rgba(0,0,0,0.2); color: #fff; font-size: 1em;
-        }
-        
-        .button {
-            background-color: var(--secondary-yellow); color: var(--dark-text); padding: 12px 25px; border: none; border-radius: 50px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin: 5px;
-        }
+        input[type="text"], input[type="date"], input[type="time"] { width: calc(100% - 24px); padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 2px solid var(--border-color); background: rgba(0,0,0,0.2); color: #fff; font-size: 1em; }
+        .button { background-color: var(--secondary-yellow); color: var(--dark-text); padding: 12px 25px; border: none; border-radius: 50px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin: 5px; }
         .button:hover { background-color: #ffc300; transform: scale(1.05); }
         .button.secondary { background-color: transparent; border: 2px solid var(--border-color); color: #fff; }
-
         .step-navigation { display: flex; justify-content: space-between; margin-top: 30px; }
-        
         #availability-summary { list-style: none; padding: 0; }
         #availability-summary li { background: rgba(0,0,0,0.25); padding: 15px; border-radius: 8px; margin-bottom: 10px; }
         #availability-summary strong { color: var(--secondary-yellow); display: block; margin-bottom: 8px; }
         .time-tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .time-tag { background: var(--primary-blue); padding: 5px 10px; border-radius: 20px; font-size: 0.9em; display: flex; align-items: center; gap: 5px; }
         .remove-time { background: #fff; color: var(--primary-blue); border: none; border-radius: 50%; width: 18px; height: 18px; cursor: pointer; font-weight: bold; line-height: 18px; }
-
         #review-content { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; text-align: left; }
-        
         .privacy-notice { background: rgba(255, 221, 87, 0.2); border-left: 5px solid var(--secondary-yellow); padding: 15px; border-radius: 8px; font-size: 0.9em; text-align: left; margin-bottom: 15px; }
         .game-area { display: flex; justify-content: center; gap: 20px; align-items: center; margin-top: 20px; flex-wrap: wrap; }
         #camera-preview { width: 160px; height: 120px; border-radius: 10px; object-fit: cover; border: 3px solid var(--secondary-yellow); }
@@ -90,13 +43,23 @@
         #score { position: absolute; top: 10px; left: 10px; font-size: 1.5em; font-weight: bold; }
         #game-message { font-size: 1.5em; font-weight: bold; color: var(--secondary-yellow); margin-top: 15px; }
         textarea { width: calc(100% - 24px); height: 80px; padding: 12px; margin-top: 15px; border-radius: 10px; border: 2px solid var(--border-color); background: rgba(0,0,0,0.2); color: #fff; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
+    <!-- TRUCCO PER NETLIFY: FORMA HTML NASCOSTA -->
+    <!-- Questa forma non è visibile all'utente, ma serve a Netlify per rilevare il form durante il deploy -->
+    <form name="sondaggio-volley" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="player_name" />
+      <textarea name="availabilities"></textarea>
+      <textarea name="description"></textarea>
+      <input type="file" name="video_message" />
+    </form>
+    <!-- FINE TRUCCO -->
+
     <div class="permission-modal-overlay" id="permission-modal">
+        <!-- ... contenuto del modal ... -->
         <div class="permission-modal-content">
             <h2>Attenzione!</h2>
             <p>Per rendere questo sondaggio super divertente, useremo la tua fotocamera per registrare un video-messaggio durante la sfida finale. <br><br> Per favore, quando ti verrà richiesto dal browser, clicca su "Consenti".</p>
@@ -105,6 +68,7 @@
     </div>
 
     <div class="container" id="main-container">
+        <!-- ... tutto il container con gli step del form rimane identico ... -->
         <div class="progress-bar">
             <div class="progress-bar-line"></div>
             <div class="step-indicator active" data-step="1">1</div>
@@ -114,11 +78,12 @@
             <div class="step-indicator" data-step="5">5</div>
         </div>
         
-        <!-- MODIFICA PER NETLIFY: rimosso "action", aggiunto "data-netlify" -->
-        <form name="sondaggio-volley" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <form id="sondaggio-form-visibile" method="POST" enctype="multipart/form-data">
+            <!-- NOTA: Il form visibile non ha più l'attributo data-netlify -->
+            <input type="hidden" name="form-name" value="sondaggio-volley" />
             
             <div class="step active" id="step-1">
-                <h2>Passo 1: Chi sei?</h2>
+                 <h2>Passo 1: Chi sei?</h2>
                 <p>Iniziamo con il tuo nome, campione!</p>
                 <input type="text" id="player-name" name="player_name" required>
                 <div class="step-navigation">
@@ -126,7 +91,6 @@
                     <button type="button" class="button next-btn">Avanti</button>
                 </div>
             </div>
-
             <div class="step" id="step-2">
                 <h2>Passo 2: Quando ci sei?</h2>
                 <p>Seleziona un giorno, poi aggiungi uno o più orari.</p>
@@ -141,7 +105,6 @@
                     <button type="button" class="button next-btn">Avanti</button>
                 </div>
             </div>
-
             <div class="step" id="step-3">
                 <h2>Passo 3: Riepilogo</h2>
                 <p>Controlla se è tutto corretto prima della sfida finale.</p>
@@ -151,7 +114,6 @@
                     <button type="button" class="button next-btn" id="start-challenge-btn">Inizia la Sfida!</button>
                 </div>
             </div>
-
             <div class="step" id="step-4">
                 <h2>Passo 4: La Sfida!</h2>
                 <p>Fai 5 palleggi! Attiveremo la webcam per registrare la tua gloriosa performance.</p>
@@ -166,13 +128,11 @@
                 </div>
                 <div id="game-message"></div>
             </div>
-            
             <div class="step" id="step-5">
                 <h2>Passo 5: Invia Tutto!</h2>
                 <p>Ce l'hai fatta! Lascia un messaggio finale se vuoi.</p>
                 <textarea name="description" placeholder="Aggiungi una descrizione o un urlo di battaglia..."></textarea>
                 <input type="hidden" name="availabilities">
-                <!-- Aggiungi un campo file per il video, nascosto ma necessario per Netlify -->
                 <input type="file" name="video_message" style="display:none;">
                 <div class="step-navigation">
                      <button type="button" class="button secondary prev-btn">Indietro</button>
@@ -183,198 +143,77 @@
     </div>
 
     <script>
-    // --- INITIAL PERMISSION LOGIC ---
-    const permissionModal = document.getElementById('permission-modal');
-    const acceptCameraBtn = document.getElementById('accept-camera-btn');
-    const mainContainer = document.getElementById('main-container');
+        // --- SCRIPT MODIFICATO PER FUNZIONARE CON IL TRUCCO DI NETLIFY ---
+        const form = document.getElementById('sondaggio-form-visibile');
 
-    acceptCameraBtn.addEventListener('click', () => {
-        permissionModal.style.display = 'none';
-        mainContainer.style.display = 'block';
-    });
-    
-    // Lo script JavaScript rimane quasi identico, ma cambierà il modo in cui gestisce l'invio
-    const form = document.querySelector('form[data-netlify="true"]');
-    const hiddenAvailabilities = form.querySelector('input[name="availabilities"]');
-    const hiddenVideoInput = form.querySelector('input[name="video_message"]');
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        let availText = "";
-        availabilitySummary.querySelectorAll('li').forEach(li => {
-            const date = li.querySelector('strong').textContent;
-            const times = Array.from(li.querySelectorAll('.time-tag')).map(t => t.innerText.replace('×', '').trim()).join(', ');
-            availText += `${date}: ${times}\n`;
-        });
-        hiddenAvailabilities.value = availText;
-        
-        if (videoBlob) {
-            // Netlify ha bisogno di un vero file, non solo un blob
-            const videoFile = new File([videoBlob], `beach-volley-${new Date().toISOString()}.webm`, { type: 'video/webm' });
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            let availText = "";
             
-            // Creiamo un contenitore per il file e lo aggiungiamo al form
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(videoFile);
-            hiddenVideoInput.files = dataTransfer.files;
-        }
+            availabilitySummary.querySelectorAll('li').forEach(li => {
+                const date = li.querySelector('strong').textContent;
+                const times = Array.from(li.querySelectorAll('.time-tag')).map(t => t.innerText.replace('×', '').trim()).join(', ');
+                availText += `${date}: ${times}\n`;
+            });
+            formData.set('availabilities', availText);
+            
+            if (videoBlob) {
+                const videoFile = new File([videoBlob], `beach-volley-${new Date().toISOString()}.webm`, { type: 'video/webm' });
+                formData.set('video_message', videoFile);
+            }
 
-        // Il nostro script non usa più fetch, lasciamo che Netlify faccia la sua magia
-        const formData = new FormData(form);
-        const action = form.getAttribute('action') || '/'; // Netlify usa l'URL corrente
-        
-        fetch(action, {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => {
-            if (response.ok) {
+            fetch('/', {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" }, // Header per l'invio AJAX a Netlify
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
                 alert('Grazie! Sondaggio inviato con successo!');
                 window.location.reload();
-            } else {
-                 alert('Oops! C\'è stato un problema con l\'invio. Riprova.');
-            }
-        })
-        .catch(error => {
-            alert('Oops! Errore di rete.');
+            })
+            .catch((error) => alert('Oops! C\'è stato un errore: ' + error));
         });
-    });
 
-    // --- TUTTO IL RESTO DELLO SCRIPT DA QUI IN POI È IDENTICO ---
-    const prevBtns = document.querySelectorAll(".prev-btn");
-    const nextBtns = document.querySelectorAll(".next-btn");
-    const formSteps = document.querySelectorAll(".step");
-    const progressIndicators = document.querySelectorAll(".step-indicator");
-    const progressBarLine = document.querySelector(".progress-bar-line");
-    let currentStep = 1;
-
-    nextBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (validateStep(currentStep)) { currentStep++; updateFormSteps(); }
-        });
-    });
-    prevBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if(currentStep === 4) return;
-            currentStep--; updateFormSteps();
-        });
-    });
-    
-    function updateFormSteps() {
-        formSteps.forEach(step => {
-            step.classList.remove("active");
-            if (parseInt(step.id.split('-')[1]) === currentStep) { step.classList.add("active"); }
-        });
-        progressIndicators.forEach((indicator, index) => {
-            if (index < currentStep) { indicator.classList.add("active"); } else { indicator.classList.remove("active"); }
-        });
-        progressBarLine.style.width = `${((currentStep - 1) / (formSteps.length - 1)) * 100}%`;
-        if(currentStep === 3) { populateReview(); }
-        if(currentStep === 4) { startGame(); }
-    }
-    
-    function validateStep(step) {
-        if(step === 1 && !document.getElementById('player-name').value) { alert('Per favore, inserisci il tuo nome!'); return false; }
-        if(step === 2 && document.getElementById('availability-summary').children.length === 0) { alert('Aggiungi almeno una disponibilità!'); return false; }
-        return true;
-    }
-
-    const addTimeBtn = document.getElementById('add-time-btn');
-    const availabilitySummary = document.getElementById('availability-summary');
-    const dateInput = document.getElementById('date-input');
-    const timeInput = document.getElementById('time-input');
-
-    addTimeBtn.addEventListener('click', () => {
-        const dateVal = dateInput.value, timeVal = timeInput.value;
-        if (!dateVal || !timeVal) { alert('Seleziona sia una data che un orario.'); return; }
-        let dayLi = availabilitySummary.querySelector(`li[data-date="${dateVal}"]`);
-        if (!dayLi) {
-            dayLi = document.createElement('li'); dayLi.dataset.date = dateVal;
-            const formattedDate = new Date(dateVal).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
-            dayLi.innerHTML = `<strong>${formattedDate}</strong><div class="time-tags"></div>`;
-            availabilitySummary.appendChild(dayLi);
-        }
-        const timeTagsContainer = dayLi.querySelector('.time-tags');
-        const existingTimes = Array.from(timeTagsContainer.querySelectorAll('.time-tag')).map(tag => tag.innerText.replace('×', '').trim());
-        if (existingTimes.includes(timeVal)) { alert('Questo orario è già stato aggiunto per questa data!'); return; }
-        const timeTag = document.createElement('span'); timeTag.className = 'time-tag';
-        timeTag.innerHTML = `${timeVal} <button type="button" class="remove-time">×</button>`;
-        timeTagsContainer.appendChild(timeTag);
-        timeTag.querySelector('.remove-time').addEventListener('click', () => {
-            timeTag.remove();
-            if (timeTagsContainer.children.length === 0) { dayLi.remove(); }
-        });
-    });
-    
-    function populateReview() {
-        const name = document.getElementById('player-name').value;
-        const reviewContent = document.getElementById('review-content');
-        reviewContent.innerHTML = `<h3>Nome: ${name}</h3><h4>Disponibilità:</h4>${availabilitySummary.innerHTML}`;
-        reviewContent.querySelectorAll('.remove-time').forEach(btn => btn.style.display = 'none');
-    }
-    
-    const gameContainer = document.getElementById('game-container');
-    const ball = document.getElementById('ball');
-    const paddle = document.getElementById('paddle');
-    const scoreDisplay = document.getElementById('score');
-    const gameMessage = document.getElementById('game-message');
-    const cameraPreview = document.getElementById('camera-preview');
-    let mediaRecorder, recordedChunks = [], videoBlob, gameLoop;
-    const WINNING_SCORE = 5;
-    const MAX_VERTICAL_SPEED = 12;
-    let score = 0;
-    let ballState = { x: 140, y: 50, vx: 2, vy: 3 };
-
-    async function startGame() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-            cameraPreview.srcObject = stream;
-            recordedChunks = [];
-            mediaRecorder = new MediaRecorder(stream);
-            mediaRecorder.ondataavailable = e => recordedChunks.push(e.data);
-            mediaRecorder.onstop = () => videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
-            mediaRecorder.start();
-            resetGame();
-            gameLoop = setInterval(updateGame, 20);
-        } catch (err) {
-            alert("Impossibile accedere alla webcam. Assicurati di aver dato i permessi!");
-            currentStep = 3; updateFormSteps();
-        }
-    }
-    
-    function movePaddle(clientX) {
-        const rect = gameContainer.getBoundingClientRect();
-        let newX = clientX - rect.left;
-        paddle.style.left = Math.max(0, Math.min(newX - (paddle.offsetWidth / 2), gameContainer.clientWidth - paddle.offsetWidth)) + 'px';
-    }
-
-    gameContainer.addEventListener('mousemove', e => movePaddle(e.clientX));
-    gameContainer.addEventListener('touchmove', e => {
-        e.preventDefault();
-        movePaddle(e.touches[0].clientX);
-    });
-
-    function resetGame() { score = 0; scoreDisplay.textContent = score; ballState = { x: 140, y: 50, vx: (Math.random() > 0.5 ? 2 : -2), vy: 3 }; gameMessage.textContent = ''; }
-    
-    function updateGame() {
-        ballState.x += ballState.vx; ballState.y += ballState.vy;
-        if (ballState.x <= 0 || ballState.x >= gameContainer.clientWidth - ball.offsetWidth) { ballState.vx *= -1; }
-        if (ballState.y <= 0) { ballState.vy *= -1; }
-        const paddleRect = paddle.getBoundingClientRect(), ballRect = ball.getBoundingClientRect();
-        if (ballState.vy > 0 && ballRect.bottom >= paddleRect.top && ballRect.right >= paddleRect.left && ballRect.left <= paddleRect.right && ballRect.bottom <= paddleRect.bottom) {
-            let newVy = ballState.vy * -1.15;
-            if (Math.abs(newVy) > MAX_VERTICAL_SPEED) { newVy = -MAX_VERTICAL_SPEED; }
-            ballState.vy = newVy;
-            score++; scoreDisplay.textContent = score;
-            if (score >= WINNING_SCORE) { winGame(); }
-        }
-        if (ballState.y >= gameContainer.clientHeight - ball.offsetHeight) { loseGame(); }
-        ball.style.left = ballState.x + 'px'; ball.style.top = ballState.y + 'px';
-    }
-
-    function stopGame() { clearInterval(gameLoop); if (mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop(); }
-    function winGame() { stopGame(); gameMessage.textContent = 'VITTORIA!'; setTimeout(() => { currentStep++; updateFormSteps(); }, 1500); }
-    function loseGame() { stopGame(); gameMessage.textContent = 'Game Over! Riprova.'; setTimeout(() => { startGame(); }, 1500); }
+        // --- TUTTO IL RESTO DELLO SCRIPT RIMANE IDENTICO ---
+        const permissionModal = document.getElementById('permission-modal');
+        const acceptCameraBtn = document.getElementById('accept-camera-btn');
+        const mainContainer = document.getElementById('main-container');
+        acceptCameraBtn.addEventListener('click', () => { permissionModal.style.display = 'none'; mainContainer.style.display = 'block'; });
+        const prevBtns = document.querySelectorAll(".prev-btn");
+        const nextBtns = document.querySelectorAll(".next-btn");
+        const formSteps = document.querySelectorAll(".step");
+        const progressIndicators = document.querySelectorAll(".step-indicator");
+        const progressBarLine = document.querySelector(".progress-bar-line");
+        let currentStep = 1;
+        nextBtns.forEach(btn => { btn.addEventListener("click", () => { if (validateStep(currentStep)) { currentStep++; updateFormSteps(); } }); });
+        prevBtns.forEach(btn => { btn.addEventListener("click", () => { if(currentStep === 4) return; currentStep--; updateFormSteps(); }); });
+        function updateFormSteps() { formSteps.forEach(step => { step.classList.remove("active"); if (parseInt(step.id.split('-')[1]) === currentStep) { step.classList.add("active"); } }); progressIndicators.forEach((indicator, index) => { if (index < currentStep) { indicator.classList.add("active"); } else { indicator.classList.remove("active"); } }); progressBarLine.style.width = `${((currentStep - 1) / (formSteps.length - 1)) * 100}%`; if(currentStep === 3) { populateReview(); } if(currentStep === 4) { startGame(); } }
+        function validateStep(step) { if(step === 1 && !document.getElementById('player-name').value) { alert('Per favore, inserisci il tuo nome!'); return false; } if(step === 2 && document.getElementById('availability-summary').children.length === 0) { alert('Aggiungi almeno una disponibilità!'); return false; } return true; }
+        const addTimeBtn = document.getElementById('add-time-btn');
+        const availabilitySummary = document.getElementById('availability-summary');
+        const dateInput = document.getElementById('date-input');
+        const timeInput = document.getElementById('time-input');
+        addTimeBtn.addEventListener('click', () => { const dateVal = dateInput.value, timeVal = timeInput.value; if (!dateVal || !timeVal) { alert('Seleziona sia una data che un orario.'); return; } let dayLi = availabilitySummary.querySelector(`li[data-date="${dateVal}"]`); if (!dayLi) { dayLi = document.createElement('li'); dayLi.dataset.date = dateVal; const formattedDate = new Date(dateVal).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' }); dayLi.innerHTML = `<strong>${formattedDate}</strong><div class="time-tags"></div>`; availabilitySummary.appendChild(dayLi); } const timeTagsContainer = dayLi.querySelector('.time-tags'); const existingTimes = Array.from(timeTagsContainer.querySelectorAll('.time-tag')).map(tag => tag.innerText.replace('×', '').trim()); if (existingTimes.includes(timeVal)) { alert('Questo orario è già stato aggiunto per questa data!'); return; } const timeTag = document.createElement('span'); timeTag.className = 'time-tag'; timeTag.innerHTML = `${timeVal} <button type="button" class="remove-time">×</button>`; timeTagsContainer.appendChild(timeTag); timeTag.querySelector('.remove-time').addEventListener('click', () => { timeTag.remove(); if (timeTagsContainer.children.length === 0) { dayLi.remove(); } }); });
+        function populateReview() { const name = document.getElementById('player-name').value; const reviewContent = document.getElementById('review-content'); reviewContent.innerHTML = `<h3>Nome: ${name}</h3><h4>Disponibilità:</h4>${availabilitySummary.innerHTML}`; reviewContent.querySelectorAll('.remove-time').forEach(btn => btn.style.display = 'none'); }
+        const gameContainer = document.getElementById('game-container');
+        const ball = document.getElementById('ball');
+        const paddle = document.getElementById('paddle');
+        const scoreDisplay = document.getElementById('score');
+        const gameMessage = document.getElementById('game-message');
+        const cameraPreview = document.getElementById('camera-preview');
+        let mediaRecorder, recordedChunks = [], videoBlob, gameLoop;
+        const WINNING_SCORE = 5; const MAX_VERTICAL_SPEED = 12; let score = 0; let ballState = { x: 140, y: 50, vx: 2, vy: 3 };
+        async function startGame() { try { const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false }); cameraPreview.srcObject = stream; recordedChunks = []; mediaRecorder = new MediaRecorder(stream); mediaRecorder.ondataavailable = e => recordedChunks.push(e.data); mediaRecorder.onstop = () => videoBlob = new Blob(recordedChunks, { type: 'video/webm' }); mediaRecorder.start(); resetGame(); gameLoop = setInterval(updateGame, 20); } catch (err) { alert("Impossibile accedere alla webcam. Assicurati di aver dato i permessi!"); currentStep = 3; updateFormSteps(); } }
+        function movePaddle(clientX) { const rect = gameContainer.getBoundingClientRect(); let newX = clientX - rect.left; paddle.style.left = Math.max(0, Math.min(newX - (paddle.offsetWidth / 2), gameContainer.clientWidth - paddle.offsetWidth)) + 'px'; }
+        gameContainer.addEventListener('mousemove', e => movePaddle(e.clientX));
+        gameContainer.addEventListener('touchmove', e => { e.preventDefault(); movePaddle(e.touches[0].clientX); });
+        function resetGame() { score = 0; scoreDisplay.textContent = score; ballState = { x: 140, y: 50, vx: (Math.random() > 0.5 ? 2 : -2), vy: 3 }; gameMessage.textContent = ''; }
+        function updateGame() { ballState.x += ballState.vx; ballState.y += ballState.vy; if (ballState.x <= 0 || ballState.x >= gameContainer.clientWidth - ball.offsetWidth) { ballState.vx *= -1; } if (ballState.y <= 0) { ballState.vy *= -1; } const paddleRect = paddle.getBoundingClientRect(), ballRect = ball.getBoundingClientRect(); if (ballState.vy > 0 && ballRect.bottom >= paddleRect.top && ballRect.right >= paddleRect.left && ballRect.left <= paddleRect.right && ballRect.bottom <= paddleRect.bottom) { let newVy = ballState.vy * -1.15; if (Math.abs(newVy) > MAX_VERTICAL_SPEED) { newVy = -MAX_VERTICAL_SPEED; } ballState.vy = newVy; score++; scoreDisplay.textContent = score; if (score >= WINNING_SCORE) { winGame(); } } if (ballState.y >= gameContainer.clientHeight - ball.offsetHeight) { loseGame(); } ball.style.left = ballState.x + 'px'; ball.style.top = ballState.y + 'px'; }
+        function stopGame() { clearInterval(gameLoop); if (mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop(); }
+        function winGame() { stopGame(); gameMessage.textContent = 'VITTORIA!'; setTimeout(() => { currentStep++; updateFormSteps(); }, 1500); }
+        function loseGame() { stopGame(); gameMessage.textContent = 'Game Over! Riprova.'; setTimeout(() => { startGame(); }, 1500); }
     </script>
 
 </body>
